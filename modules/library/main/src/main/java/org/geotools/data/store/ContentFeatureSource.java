@@ -541,7 +541,7 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
         }
 
         // offset
-        int offset = query.getStartIndex() != null ? query.getStartIndex() : 0;
+        int offset = query.getOffset() != null ? query.getOffset() : 0;
         if (!canOffset() && offset > 0) {
             // skip the first n records
             count = Math.max(0, count - offset);
@@ -676,7 +676,7 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
         }
 
         // offset
-        int offset = query.getStartIndex() != null ? query.getStartIndex() : 0;
+        int offset = query.getOffset() != null ? query.getOffset() : 0;
         if (!canOffset() && offset > 0) {
             // skip the first n records
             for (int i = 0; i < offset && reader.hasNext(); i++) {

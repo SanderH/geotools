@@ -168,8 +168,11 @@ public class Query {
     /** The maximum numbers of features to fetch */
     protected int maxFeatures = Query.DEFAULT_MAX;
 
-    /** The index of the first feature to process */
+    /** The index of the first feature get remotely */
     protected Integer startIndex = null;
+
+    /** The index of the first feature to process */
+    protected Integer offset = null;
 
     /** The filter to constrain the request. */
     protected Filter filter = Filter.INCLUDE;
@@ -542,7 +545,7 @@ public class Query {
     }
 
     /**
-     * Set the index of the first feature to retrieve. This can be used in conjuction with
+     * Set the index of the first feature to retrieve remotely. This can be used in conjuction with
      * {@linkplain #setMaxFeatures(int) } to 'page' through a feature data source.
      *
      * @param startIndex index of the first feature to retrieve or {@code null} to indicate no start
@@ -555,6 +558,32 @@ public class Query {
                     "startIndex shall be a positive integer: " + startIndex);
         }
         this.startIndex = startIndex;
+    }
+
+    /**
+     * Get the index of the first feature to retrieve.
+     *
+     * @return the index of the first feature to retrieve or {@code null} if no start index is
+     *     defined.
+     */
+    public Integer getOffset() {
+        return this.offset;
+    }
+
+    /**
+     * Set the index of the first feature to retrieve. This can be used in conjuction with
+     * {@linkplain #setMaxFeatures(int) } to 'page' through a feature data source.
+     *
+     * @param offset index of the first feature to retrieve or {@code null} to indicate no start
+     *     index
+     * @throws IllegalArgumentException if startIndex is less than 0
+     */
+    public void setOffset(Integer offset) {
+        if (offset != null && offset.intValue() < 0) {
+            throw new IllegalArgumentException(
+                    "offset shall be a positive integer: " + offset);
+        }
+        this.offset = offset;
     }
 
     /**

@@ -251,6 +251,9 @@ public abstract class AbstractWFSStrategy extends WFSStrategy {
         if (request.getMaxFeatures() != null) {
             map.put("MAXFEATURES", String.valueOf(request.getMaxFeatures()));
         }
+        if (request.getStartIndex() != null) {
+            map.put("STARTINDEX", String.valueOf(request.getStartIndex()));
+        }
 
         QName typeName = request.getTypeName();
         String queryTypeName = getPrefixedTypeName(typeName);
